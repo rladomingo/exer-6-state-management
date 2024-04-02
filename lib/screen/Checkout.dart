@@ -17,7 +17,7 @@ class _CheckoutState extends State<Checkout> {
     return Scaffold(
         appBar: AppBar(title: const Text("Checkout")),
         body: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-          Text("Item Details"),
+          const Text("Item Details"),
           const Divider(height: 4, color: Colors.grey),
           getItems(context),
         ]));
@@ -25,7 +25,6 @@ class _CheckoutState extends State<Checkout> {
 
   Widget getItems(BuildContext context) {
     List<Item> products = context.watch<ShoppingCart>().cart;
-    String productname = "";
     return products.isEmpty
         ? const Text('No items to checkout!')
         : Expanded(
@@ -49,10 +48,10 @@ class _CheckoutState extends State<Checkout> {
                   ElevatedButton(
                       onPressed: () {
                         context.read<ShoppingCart>().removeAll();
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
                           content: Text("Payment Successful!"),
-                          duration:
-                              const Duration(seconds: 1, milliseconds: 100),
+                          duration: Duration(seconds: 1, milliseconds: 100),
                         ));
                       },
                       child: const Text("Pay Now!")),
